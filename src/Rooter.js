@@ -8,10 +8,10 @@ export default class AppRouter extends Component {
     render() {
         return (
             <Router>
-                {/*<Scene key="root">*/}
+                <Scene key="root">
                     <Scene key="entry" component={EntryPage} hideNavBar initial />
                     <Scene key="second" component={SecondPage} hideNavBar  />
-                {/*</Scene>*/}
+                </Scene>
 
             </Router>
 

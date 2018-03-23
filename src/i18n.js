@@ -1,66 +1,76 @@
 import i18n from 'i18next';
+import { reactI18nextModule } from 'react-i18next';
 import i18nextReactNative from 'i18next-react-native-language-detector'
-
-
+import XHR from 'i18next-xhr-backend';
 
 i18n
+    .use(XHR)
     .use(i18nextReactNative)
+    .use(reactI18nextModule)
     .init({
+        // backend: {
+        //     loadPath: 'https://api.ufssalespro.com/lang/en/menu.json',
+        // },
         fallbackLng: 'en',
 
         resources: {
             en: {
-                home: {
-                    title: 'Welcome',
-                    introduction: 'This text comes from i18next and is provided in english.'
+                "entryPage": {
+                    "simpleText": "this is simple text",
+                    "goToPage2": "Page 2"
+
                 },
-                page2: {
-                    title: 'Page 2',
-                    introduction: 'This text on page two.'
+                "secondPage": {
+                    "cancelBtn": "Cancel",
+                    "saveBtn": "Save",
+                    "addBtn": "Add",
+                    "back2SecondPage": "Back to Page 2",
+                    "text": "This is second page"
                 },
-                common: {
-                    currentLanguage: 'The current language is "{{lng}}"',
-                    actions: {
-                        toggleToGerman: 'Deutsch',
-                        toggleToEnglish: 'English',
-                        goToPage2: 'Open page 2'
-                    },
-                    infoText: "<0><0>Eins </O><1>Zwei </1><2>Drei </2><3>Vier </3><4>Fünf</4></O>"
-                }
             },
             de: {
-                home: {
-                    title: 'Willkommen',
-                    introduction: 'Dieser Text ist von i18next und ist in deutsch.'
+                "entryPage": {
+                    "simpleText": "Das ist einfacher Text"
+
                 },
-                page2: {
-                    title: 'Seite 2',
-                    introduction: 'Text auf Seite 2'
-                },
-                common: {
-                    currentLanguage: 'Die Sprache ist auf "{{lng}}" gesetzt',
-                    actions: {
-                        toggleToGerman: 'Deutsch',
-                        toggleToEnglish: 'English',
-                        goToPage2: 'Öffne Seite 2'
-                    }
+                "secondPage": {
+                    "cancelBtn": "Stornieren",
+                    "saveBtn": "sparen",
+                    "addBtn": "Hinzufügen",
+                    "back2SecondPage": "Zurück zu Seite 2",
+                    "text": "Dies ist die zweite Seite"
                 }
+            },
+            fr: {
+                "entryPage": {
+                    "simpleText": "c'est un texte simple"
+                },
+                "secondPage": {
+                    "cancelBtn": "Annuler",
+                    "saveBtn": "sauvegarder",
+                    "addBtn": "Ajouter",
+                    "back2SecondPage": "Retour à la page 2",
+                    "text": "sa deuxième page"
+                },
             }
         },
 
-        // have a common namespace used around the full app
-        ns: ['common'],
-        defaultNS: 'common',
+        ns: ['entryPage'],
+        defaultNS: 'entryPage',
 
-        debug: true,
+        // // have a common namespace used around the full app
+        // ns: ['common'],
+        // defaultNS: 'common',
 
-        // cache: {
-        //   enabled: true
-        // },
-
-        interpolation: {
-            escapeValue: false, // not needed for react as it does escape per default to prevent xss!
-        }
+        debug: true
+        //
+        // // cache: {
+        // //   enabled: true
+        // // },
+        //
+        // interpolation: {
+        //     escapeValue: false, // not needed for react as it does escape per default to prevent xss!
+        // }
     });
 
 

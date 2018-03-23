@@ -1,31 +1,36 @@
 import React,{Component} from 'react';
+import { translate } from 'react-i18next';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import {Actions} from 'react-native-router-flux';
-import { translate } from 'react-i18next';
 
-translate(['home', 'common'], { wait: true })
+
+// translate(['entryPage'], { wait: true })
 export default class entryPage extends Component {
 
 
+    // static navigationOptions = ({ navigation, screenProps }) => ({
+    //     title: screenProps.t('home:title')
+    // });
 
-    constructor(props) {
-        console.log("in constructor");
-        super(props);
 
+    btnPressed(){
+        console.log("Button pressed");
     }
 
     render() {
-        const { t, i18n,  } = this.props;
 
+        console.log("This Props.t: ",this.props.t);
+        const { t, i18n } = this.props;
+        // const { navigate } = navigation;
 
         return (
             <View style={styles.container}>
                 <Text>Languages</Text>
-                <Button title="English"><Text>{t('common:currentLanguage', { lng: i18n.language })}</Text></Button>
-                    <Button title="French"/>
-                    <Button title="German"/>
-                    <Button onPress={()=>Actions.second()} title="Go to Second Page"/>
-                <Text>this is simple text!</Text>
+                    <Button onPress={() => { i18n.changeLanguage('en') }} title="English"/>
+                    <Button onPress={() => { i18n.changeLanguage('fr') }} title="French"/>
+                    <Button onPress={() => { i18n.changeLanguage('de') }} title="German"/>
+                    <Button onPress={()=>Actions.second()} title={t('entryPage:goToPage2')}/>
+                <Text>{t('entryPage:simpleText')}</Text>
             </View>
         );
     }
@@ -44,3 +49,4 @@ const styles = StyleSheet.create({
         marginTop: 50
     }
 });
+module.exports = translate()(entryPage)
